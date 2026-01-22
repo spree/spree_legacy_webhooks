@@ -32,6 +32,7 @@ require 'database_cleaner/active_record'
 require 'ffaker'
 require 'webmock/rspec'
 require 'i18n/tasks'
+require 'jsonapi/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -59,8 +60,8 @@ require 'spree/api/testing_support/v2/platform_contexts'
 require 'spree/api/testing_support/v2/serializers_params'
 require 'spree/api/testing_support/factories'
 
-require 'spree/legacy_webhooks/testing_support/matchers/webhooks'
-require 'spree/legacy_webhooks/testing_support/factories'
+require 'spree_legacy_webhooks/testing_support/matchers/webhooks'
+require 'spree_legacy_webhooks/testing_support/factories'
 
 require 'spree/core/controller_helpers/strong_parameters'
 

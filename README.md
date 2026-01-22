@@ -2,14 +2,7 @@
 
 Legacy HTTP webhooks extension for [Spree Commerce](https://spreecommerce.org), an open source e-commerce platform built with Ruby on Rails.
 
-This extension provides the legacy callback-based webhook system for Spree. Consider migrating to the new event-based webhooks available in `spree_api`.
-
-## Features
-
-- HTTP webhook notifications for model changes (create, update, delete)
-- Webhook subscribers management via Admin panel and Platform API
-- Support for custom event filtering
-- Signature verification for webhook payloads
+This extension provides the legacy callback-based webhook system for Spree. We recommend migrating to the new event-based webhooks available in `spree_api` as they offer much better performance, scalability and Admin UI.
 
 ## Installation
 
