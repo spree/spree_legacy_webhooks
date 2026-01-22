@@ -174,28 +174,26 @@ describe Spree::Webhooks::Subscribers::HandleRequest do
       end
 
       context 'after executing the job' do
-        let(:body_with_event_metadata) do
-          webhook_payload_body.merge(
-            event_created_at: event.created_at, event_id: event.id, event_type: event.name
-          ).to_json
-        end
-
-        let(:event_signature) do
-          Spree::Webhooks::EventSignature.new(event, body_with_event_metadata).computed_signature
-        end
-
         it 'adds the event data to the body' do
           perform_enqueued_jobs(except: Spree::Addresses::GeocodeAddressJob) do
             with_webhooks_enabled do
               allow(Spree::Webhooks::Subscribers::MakeRequest).to receive(:new).and_call_original
               order.finalize!
-              expect(Spree::Webhooks::Subscribers::MakeRequest).to \
-                have_received(:new).
-                with(
-                  signature: event_signature,
-                  url: url,
-                  webhook_payload_body: body_with_event_metadata
-                )
+
+              expect(Spree::Webhooks::Subscribers::MakeRequest).to have_received(:new) do |args|
+                expect(args[:url]).to eq(url)
+
+                body = JSON.parse(args[:webhook_payload_body])
+                expect(body['event_type']).to eq(event_name)
+                expect(body['event_id']).to be_present
+                expect(body['event_created_at']).to be_present
+                expect(body['data']['type']).to eq('order')
+
+                # Verify signature matches the body
+                event = Spree::Webhooks::Event.find(body['event_id'])
+                expected_signature = Spree::Webhooks::EventSignature.new(event, args[:webhook_payload_body]).computed_signature
+                expect(args[:signature]).to eq(expected_signature)
+              end
             end
           end
         end

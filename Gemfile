@@ -7,6 +7,7 @@ end
 
 gem 'rails-controller-testing'
 gem 'jsonapi-rspec'
+gem 'timecop'
 
 spree_opts = { github: 'spree/spree', branch: 'main' }
 gem 'spree', spree_opts
