@@ -28,8 +28,8 @@ Gem::Specification.new do |s|
   s.files        = Dir["{app,config,db,lib,vendor}/**/*", "LICENSE.md", "Rakefile", "README.md"].reject { |f| f.match(/^spec/) && !f.match(/^spec\/fixtures/) }
   s.require_path = 'lib'
 
-  s.add_dependency 'spree', '>= 5.0'
-  s.add_dependency 'spree_admin', '>= 5.0'
+  s.add_dependency 'spree', '>= 5.3'
+  s.add_dependency 'spree_admin', '>= 5.3'
   s.add_dependency 'spree_extension'
 
   s.add_development_dependency 'spree_dev_tools'
