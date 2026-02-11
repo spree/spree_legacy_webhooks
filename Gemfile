@@ -9,7 +9,7 @@ gem 'rails-controller-testing'
 gem 'jsonapi-rspec'
 gem 'timecop'
 
-spree_opts = { github: 'spree/spree', branch: 'main' }
+spree_opts = { github: 'spree/spree', branch: 'main', glob: 'backend/engines/**/*.gemspec' }
 gem 'spree', spree_opts
 gem 'spree_admin', spree_opts
 gem 'spree_emails', spree_opts
