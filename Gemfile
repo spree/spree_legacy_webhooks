@@ -9,10 +9,12 @@ gem 'rails-controller-testing'
 gem 'jsonapi-rspec'
 gem 'timecop'
 
-spree_opts = { github: 'spree/spree', branch: 'main' }
+spree_opts = { github: 'spree/spree', branch: 'main', glob: 'backend/engines/**/*.gemspec' }
 gem 'spree', spree_opts
 gem 'spree_admin', spree_opts
 gem 'spree_emails', spree_opts
+
+gem 'spree_legacy_api_v2'
 
 gem 'mysql2' if ENV['DB'] == 'mysql' || ENV['CI']
 gem 'pg' if ENV['DB'] == 'postgres' || ENV['CI']
